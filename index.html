@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Zap Contatos – Vellozia</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#25D366">
+  <style>
+    :root { --pad: 14px; --radius: 14px; --shadow: 0 6px 20px rgba(0,0,0,.08);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { margin: 0; background: #f7f7f7; }
+    header { position: sticky; top: 0; background: white; padding: var(--pad); display: grid; gap: 10px; box-shadow: 0 1px 0 rgba(0,0,0,.06); z-index: 2; }
+    h1 { margin: 0; font-size: 18px; }
+    .row-wrap { display:flex; gap:8px; flex-wrap: wrap; align-items: center; }
+    select, input[type=text] { padding: 12px; border-radius: 12px; border: 1px solid #e5e5e5; font-size: 15px; }
+    #list { padding: var(--pad); display: grid; gap: 10px; }
+    .card { background: white; border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow); display: grid; gap: 8px; align-items: center; }
+    .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .name { font-weight: 700; font-size: 16px; }
+    .muted { color: #666; font-size: 12px; }
+    .btn { text-decoration: none; display: inline-block; padding: 10px 14px; border-radius: 999px; background: #25D366; color: white; font-weight: 700; }
+    .btn:active { transform: scale(.98); }
+    #empty { text-align: center; color: #777; padding: 40px 20px; }
+    footer { padding: 60px 10px 24px; text-align: center; color: #aaa; font-size: 12px; }
+    .ghost { background: transparent; border: 1px solid #e5e5e5; border-radius: 10px; padding: 8px 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Zap Contatos – Vellozia</h1>
+    <div class="row-wrap">
+      <select id="rep">
+        <option value="">Todos os representantes</option>
+        <option value="data/contatos-Adriana-Tavares.json">Adriana Tavares</option>
+        <option value="data/contatos-Agno.json">Agno</option>
+        <option value="data/contatos-Alessandro.json">Alessandro</option>
+        <option value="data/contatos-Alexandre.json">Alexandre</option>
+        <option value="data/contatos-Ana-Beatriz.json">Ana Beatriz</option>
+        <option value="data/contatos-Ana-Luiza.json">Ana Luiza</option>
+        <option value="data/contatos-Andressa-Garcia.json">Andressa Garcia</option>
+        <option value="data/contatos-Anna-J-lia.json">Anna Júlia</option>
+        <option value="data/contatos-Anna-Paula.json">Anna Paula</option>
+        <option value="data/contatos-B-rbara-Renata.json">Bárbara Renata</option>
+        <option value="data/contatos-Claudio.json">Claudio</option>
+        <option value="data/contatos-Crislaine-Beatriz.json">Crislaine Beatriz</option>
+        <option value="data/contatos-Danielle-Alves.json">Danielle Alves</option>
+        <option value="data/contatos-Debora-de-Almeida.json">Debora de Almeida</option>
+        <option value="data/contatos-Denise-Ribeiro.json">Denise Ribeiro</option>
+        <option value="data/contatos-Djailton-Lima.json">Djailton Lima</option>
+        <option value="data/contatos-Dulcinea.json">Dulcinea</option>
+        <option value="data/contatos-Ednilda-de-Sousa.json">Ednilda de Sousa</option>
+        <option value="data/contatos-Eliane-Guilherme.json">Eliane Guilherme</option>
+        <option value="data/contatos-Eliel-Rodrigues.json">Eliel Rodrigues</option>
+        <option value="data/contatos-Fabiana.json">Fabiana</option>
+        <option value="data/contatos-Fernanda-Aidar.json">Fernanda Aidar</option>
+        <option value="data/contatos-Fernanda-Antonelli.json">Fernanda Antonelli</option>
+        <option value="data/contatos-Fernando.json">Fernando</option>
+        <option value="data/contatos-Fl-via-Abreu.json">Flávia Abreu</option>
+        <option value="data/contatos-Gabriel.json">Gabriel</option>
+        <option value="data/contatos-Greife.json">Greife</option>
+        <option value="data/contatos-Henrique.json">Henrique</option>
+        <option value="data/contatos-Ingrid.json">Ingrid</option>
+        <option value="data/contatos-Ingrid-Mesquita.json">Ingrid Mesquita</option>
+        <option value="data/contatos-Isadora.json">Isadora</option>
+        <option value="data/contatos-Jakeline-Ferreira-de.json">Jakeline Ferreira de</option>
+        <option value="data/contatos-Jordania-Costa.json">Jordania Costa</option>
+        <option value="data/contatos-Joyce.json">Joyce</option>
+        <option value="data/contatos-Juliana.json">Juliana</option>
+        <option value="data/contatos-J-lio.json">Júlio</option>
+        <option value="data/contatos-Julyana-Soares.json">Julyana Soares</option>
+        <option value="data/contatos-jur-dico.json">jurídico</option>
+        <option value="data/contatos-Kely-Dayane-Feitosa.json">Kely Dayane Feitosa</option>
+        <option value="data/contatos-Laryssa-Souto.json">Laryssa Souto</option>
+        <option value="data/contatos-Laura-Geovanna.json">Laura Geovanna</option>
+        <option value="data/contatos-Let-cia.json">Letícia</option>
+        <option value="data/contatos-Leticia-Ferreira.json">Leticia Ferreira</option>
+        <option value="data/contatos-Luciana-Farias.json">Luciana Farias</option>
+        <option value="data/contatos-Luciene-de-S.json">Luciene de Sá</option>
+        <option value="data/contatos-Lucimar.json">Lucimar</option>
+        <option value="data/contatos-Ludmila-Pereira-dos.json">Ludmila Pereira dos</option>
+        <option value="data/contatos-Luis.json">Luis</option>
+        <option value="data/contatos-Lu-s-Henrique.json">Luís Henrique</option>
+        <option value="data/contatos-Lu-sa-Vit-ria.json">Luísa Vitória</option>
+        <option value="data/contatos-Maria-das-Neves.json">Maria das Neves</option>
+        <option value="data/contatos-Maria-Eduarda.json">Maria Eduarda</option>
+        <option value="data/contatos-Mariana-Carvalho.json">Mariana Carvalho</option>
+        <option value="data/contatos-Marisa-de-Oliveira.json">Marisa de Oliveira</option>
+        <option value="data/contatos-Muller-Carvalho.json">Muller Carvalho</option>
+        <option value="data/contatos-Mykaelle.json">Mykaelle</option>
+        <option value="data/contatos-Natan-Gomes.json">Natan Gomes</option>
+        <option value="data/contatos-Nery.json">Nery</option>
+        <option value="data/contatos-Patr-cia.json">Patrícia</option>
+        <option value="data/contatos-Patrick.json">Patrick</option>
+        <option value="data/contatos-Pedidos.json">Pedidos</option>
+        <option value="data/contatos-Rafael.json">Rafael</option>
+        <option value="data/contatos-Raphael.json">Raphael</option>
+        <option value="data/contatos-Rejane-Patr-cia.json">Rejane Patrícia</option>
+        <option value="data/contatos-Rhaianne.json">Rhaianne</option>
+        <option value="data/contatos-Ricardo.json">Ricardo</option>
+        <option value="data/contatos-Rodrigo.json">Rodrigo</option>
+        <option value="data/contatos-Roger.json">Roger</option>
+        <option value="data/contatos-Roger-Pilan.json">Roger Pilan</option>
+        <option value="data/contatos-Simone.json">Simone</option>
+        <option value="data/contatos-Tatyane-Krauss.json">Tatyane Krauss</option>
+        <option value="data/contatos-THAIS.json">THAIS</option>
+        <option value="data/contatos-Thatyanne-Grazielle.json">Thatyanne Grazielle</option>
+        <option value="data/contatos-Thelma-Santos.json">Thelma Santos</option>
+        <option value="data/contatos-Tito-Lopes.json">Tito Lopes</option>
+        <option value="data/contatos-Vendas.json">Vendas</option>
+        <option value="data/contatos-Vendedor.json">Vendedor</option>
+        <option value="data/contatos-Walisson.json">Walisson</option>
+        <option value="data/contatos-nan.json">nan</option>
+
+      </select>
+      <input id="search" type="text" placeholder="Buscar por nome/telefone..." autocomplete="off" />
+      <button id="install" class="ghost">Instalar</button>
+      <button id="reload" class="ghost">Atualizar</button>
+    </div>
+  </header>
+
+  <div id="list"></div>
+  <div id="empty" hidden>Nenhum contato.</div>
+  <footer>Toque para abrir o WhatsApp. Adicione à tela inicial para usar como app.</footer>
+
+<script>
+  // PWA install
+  let deferredPrompt;
+  const $install = document.getElementById('install');
+  window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
+  $install.addEventListener('click', async () => { if (!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt = null; });
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+
+  const $list = document.getElementById('list');
+  const $empty = document.getElementById('empty');
+  const $rep = document.getElementById('rep');
+  const $search = document.getElementById('search');
+  const $reload = document.getElementById('reload');
+
+  let allData = [];
+  let currentData = [];
+
+  async function load(url) {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  }
+
+  function render(items) {
+    $list.innerHTML = '';
+    if (!items.length) { $empty.hidden = false; return; }
+    $empty.hidden = true;
+    for (const c of items) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      const btn = c.url ? '<a class="btn" href="' + c.url + '" target="_blank" rel="noopener">💬 WhatsApp</a>' : '';
+      card.innerHTML = `
+        <div class="row">
+          <div>
+            <div class="name>${'${c.name || "Contato"}'}</div>
+            <div class="muted">${'${(c.phone ? "+"+c.phone : "") + (c.rep ? " · " + c.rep : "")}'}</div>
+          </div>
+          ${'${btn}'}
+        </div>`;
+      $list.appendChild(card);
+    }
+  }
+
+  function applyFilter() {
+    const q = ($search.value || '').toLowerCase();
+    const filtered = currentData.filter(c => (c.name||'').toLowerCase().includes(q) || (c.phone||'').includes(q) || (c.rep||'').toLowerCase().includes(q));
+    render(filtered);
+  }
+
+  $search.addEventListener('input', applyFilter);
+  $rep.addEventListener('change', async () => {
+    const val = $rep.value;
+    if (!val) {
+      currentData = allData.slice();
+    } else {
+      currentData = await load(val);
+    }
+    applyFilter();
+  });
+
+  $reload.addEventListener('click', async () => {
+    const val = $rep.value;
+    if (!val) {
+      allData = await load('data/contatos.json?v=' + Date.now());
+      currentData = allData.slice();
+    } else {
+      currentData = await load(val + '?v=' + Date.now());
+    }
+    applyFilter();
+  });
+
+  (async () => {
+    allData = await load('data/contatos.json');
+    currentData = allData.slice();
+    applyFilter();
+  })();
+</script>
+</body>
+</html>
